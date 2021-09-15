@@ -31,6 +31,11 @@ function renderPage(array $uri)
         require(__DIR__ . "/controllers/$controller.php");
 
         $method($page);
+    } else {
+        $method = 'render';
+        require(__DIR__ . "/controllers/ErrorController.php");
+
+        $method();
     }
 }
 
