@@ -1,0 +1,17 @@
+{
+  "name": "dhonnabhain/iut_portfolio",
+  "description": "IUT de Dijon PHP fake portfolio mvc",
+  "type": "project",
+  "require": {
+    "symfony/var-dumper": "6.0.x-dev",
+    "filp/whoops": "^2.14"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dhonnabhain",
+      "email": "donovan.broquin@outlook.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}
