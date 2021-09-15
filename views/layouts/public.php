@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <?= require(__DIR__ . "/../pages/$file") ?>
+    <?php require(__DIR__ . "/../pages/$file") ?>
 </body>
 
 </html>
