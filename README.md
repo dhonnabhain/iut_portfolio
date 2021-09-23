@@ -16,9 +16,9 @@ Par exemple:
 Le code contenu dans ces fichiers expose les accès à la base de données.
 Ce sont donc ces fichiers qui contiennent les requêtes SQL ainsi que les différents usage de PDO.
 
-Généralement, il est conseillé d'utiliser un modèle par table de base de données afin de regrouper les appels en base de données concernant une même table.
+Généralement, il est conseillé d'utiliser un modèle par table de base de données afin de regrouper les appels en base concernant une même table.
 
-Par exemple, une table themes aura un modèle présent dans le dossier `/models` avec un nom équivoque comme `themeModel.php`.
+Par exemple, une table **themes** aura un modèle présent dans le dossier `/models` avec un nom équivoque comme `themeModel.php`.
 
 ### Vue
 Les fichiers de vue sont chargés de l'affichage. Ces derniers utilisent les données issues d'un contrôleur et des modèles afin de les afficher.
