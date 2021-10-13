@@ -15,5 +15,14 @@ define('ROUTES', [
     'login' => [
         'layout' => 'public',
         'controller' => 'LoginPageController',
+    ],
+    'forms/login' => [
+        'controller' => 'LoginController',
+        'function' => 'login'
+    ],
+    'admin' => [
+        'layout' => 'public',
+        'controller' => 'AdminController',
+        'function' => 'renderHome'
     ]
 ]);

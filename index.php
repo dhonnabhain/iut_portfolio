@@ -43,7 +43,7 @@ function dispatchRequest()
      * https://www.php.net/manual/fr/control-structures.while.php
      */
     switch ($uri[1]) {
-        case 'controllers':
+        case 'forms':
             requireController($uri);
             break;
         default:
@@ -79,32 +79,49 @@ function renderPage(array $uri)
         $controller = ROUTES[$page]['controller'];
 
         /**
-         * Si la route dispose d'un index function, la fonction à appeller se la valeur renseignée, 
+         * Si la route dispose d'un index, la fonction à appeller sera la valeur renseignée, 
          * autrement, le site présume d'une fonction nommée render existe sera à utiliser
          */
         $method = isset(ROUTES[$page]['function']) ? ROUTES[$page]['function'] : 'render';
 
-        // Importation du controlleur associé à la route
+        // Importation du controleur associé à la route
         require(__DIR__ . "/controllers/$controller.php");
 
         // Appel de la fonction associée à la route
         $method($page);
     } else {
-        // Définition de la méthode à appeller comme étant render
-        $method = 'render';
-
-        // Importation du controlleur associé à la route
-        require(__DIR__ . "/controllers/ErrorController.php");
-
-        // Appel de la fonction render
-        $method();
+        renderErrorPage();
     }
 }
 
 function requireController(array $uri)
 {
+    $page = substr(join('/', $uri), 1);
+
     // Importation du controlleur associé à la route
-    require(__DIR__ . "/controllers/$uri[2].php");
+    if (array_key_exists($page, ROUTES)) {
+        $controller = ROUTES[$page]['controller'];
+
+        require(__DIR__ . "/controllers/$controller.php");
+
+        $method = ROUTES[$page]['function'];
+
+        $method();
+    } else {
+        renderErrorPage();
+    }
+}
+
+function renderErrorPage()
+{
+    // Définition de la méthode à appeller comme étant render
+    $method = 'render';
+
+    // Importation du controlleur associé à la route
+    require(__DIR__ . "/controllers/ErrorController.php");
+
+    // Appel de la fonction render
+    $method();
 }
 
 /**
