@@ -29,6 +29,8 @@ dispatchRequest();
  */
 function dispatchRequest()
 {
+    $routes = getRoutesByRequestMethod();
+
     /**
      * Séparation sous forme de tableau de l'adresse de la requête
      * Ici, la requête correspond à ce qui se trouve après le nom de domaine
@@ -37,76 +39,26 @@ function dispatchRequest()
     $uri = explode('/', $_SERVER['REQUEST_URI']);
 
     /**
-     * Certaines requêtes n'ont pas pour finalité l'affichage d'une vue comme par exemple, les formulaires
-     * Exemple: http://localhost/controllers/login
-     * 
-     * https://www.php.net/manual/fr/control-structures.while.php
+     * Si la route / est demandée, la page correspondante est l'index
+     * Sinon, reconstitution de l'uri sous forme de chaîne de caractères sans le premier /
      */
-    switch ($uri[1]) {
-        case 'forms':
-            requireController($uri);
-            break;
-        default:
-            renderPage($uri);
-            break;
-    }
-}
+    $page = $uri[1] === '' ? 'index' : substr(join('/', $uri), 1);
 
-/**
- * Fonction permettant l'affichage d'une vue
- * 
- * Ici, la valeur de $uri[1] correspond au nom d'une vue dans le dossier /views/pages
- *
- * @param array $uri
- * @return void
- */
-function renderPage(array $uri)
-{
-    /**
-     * Si la requête est http://localhost/, la vue index doit être affichée
-     * Autrement, la valeur $uri[1] est utilisé
-     */
-    $page = $uri[1] === '' ? 'index' : $uri[1];
-
-    /**
-     * Vérification de la présence de la route demandée dans la variable ROUTES
-     * définie dans le fichier routes.php
-     * 
-     * Si la route n'existe pas, le fichier ErrorController est appellé pour afficher la page d'erreur 404
-     */
-    if (array_key_exists($page, ROUTES)) {
+    if (array_key_exists($page, $routes)) {
         // Récupération du contrôleur associé à la route
-        $controller = ROUTES[$page]['controller'];
+        $controller = $routes[$page]['controller'];
 
         /**
          * Si la route dispose d'un index, la fonction à appeller sera la valeur renseignée, 
          * autrement, le site présume d'une fonction nommée render existe sera à utiliser
          */
-        $method = isset(ROUTES[$page]['function']) ? ROUTES[$page]['function'] : 'render';
+        $method = isset($routes[$page]['function']) ? $routes[$page]['function'] : 'render';
 
         // Importation du controleur associé à la route
         require(__DIR__ . "/controllers/$controller.php");
 
         // Appel de la fonction associée à la route
         $method($page);
-    } else {
-        renderErrorPage();
-    }
-}
-
-function requireController(array $uri)
-{
-    $page = substr(join('/', $uri), 1);
-
-    // Importation du controlleur associé à la route
-    if (array_key_exists($page, ROUTES)) {
-        $controller = ROUTES[$page]['controller'];
-
-        require(__DIR__ . "/controllers/$controller.php");
-
-        $method = ROUTES[$page]['function'];
-
-        $method();
     } else {
         renderErrorPage();
     }
@@ -122,6 +74,15 @@ function renderErrorPage()
 
     // Appel de la fonction render
     $method();
+}
+function getRoutesByRequestMethod()
+{
+    switch ($_SERVER['REQUEST_METHOD']) {
+        case 'POST':
+            return POST_ROUTES;
+        default:
+            return GET_ROUTES;
+    }
 }
 
 /**

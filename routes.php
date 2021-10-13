@@ -7,7 +7,7 @@
  * controller => contrôleur à utiliser pour gérer le traitement des données
  * function <optionnel> => fonction du contrôleur à utiliser
  */
-define('ROUTES', [
+define('GET_ROUTES', [
     'index' => [
         'layout' => 'public',
         'controller' => 'IndexPageController',
@@ -16,13 +16,17 @@ define('ROUTES', [
         'layout' => 'public',
         'controller' => 'LoginPageController',
     ],
-    'forms/login' => [
-        'controller' => 'LoginController',
-        'function' => 'login'
-    ],
     'admin' => [
         'layout' => 'public',
         'controller' => 'AdminController',
         'function' => 'renderHome'
     ]
+]);
+
+define('POST_ROUTES', [
+    'login' => [
+        'method' => 'POST',
+        'controller' => 'LoginController',
+        'function' => 'login'
+    ],
 ]);
