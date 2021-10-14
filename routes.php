@@ -34,7 +34,11 @@ define('GET_ROUTES', [
         'layout' => 'private',
         'controller' => 'AdminController',
         'function' => 'renderThemeCreate'
-    ]
+    ],
+    'admin/themes/delete' => [
+        'controller' => 'ThemeController',
+        'function' => 'deleteTheme'
+    ],
 ]);
 
 define('POST_ROUTES', [

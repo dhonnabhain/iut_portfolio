@@ -11,6 +11,7 @@ function renderHome($page)
     $file = "$page.php";
     $layout = GET_ROUTES[$page]['layout'];
     $cards = ['themes' => countAllThemes(), 'domains' => countAllDomains(), 'skills' => countAllSkills()];
+    $themes = getThemesForTable();
 
     require($_SERVER['DOCUMENT_ROOT'] . "/views/layouts/$layout.php");
 }
@@ -18,6 +19,7 @@ function renderHome($page)
 function renderThemeCreate($page)
 {
     authCheck();
+
     $file = "$page.php";
     $layout = GET_ROUTES[$page]['layout'];
 
@@ -27,6 +29,7 @@ function renderThemeCreate($page)
 function authCheck()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /login');
+        header('Location: login');
+        die();
     }
 }

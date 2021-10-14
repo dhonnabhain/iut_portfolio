@@ -44,7 +44,7 @@ function dispatchRequest()
      * Ici, la requête correspond à ce qui se trouve après le nom de domaine
      * Ex: http://localhost/themes -> ['', 'themes']
      */
-    $uri = explode('/', $_SERVER['REQUEST_URI']);
+    $uri = explode('/', explode('?', $_SERVER['REQUEST_URI'])[0]);
 
     /**
      * Si la route / est demandée, la page correspondante est l'index

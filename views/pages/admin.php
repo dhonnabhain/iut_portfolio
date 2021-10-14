@@ -11,5 +11,7 @@
 <?php
 if ($cards['themes'] == 0) {
     require __DIR__ . '/../partials/admin/themes/emptyCreateTheme.php';
+} else {
+    require __DIR__ . '/../partials/admin/themes/listThemes.php';
 }
 ?>
