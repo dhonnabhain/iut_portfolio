@@ -1,10 +1,15 @@
-<div class="w-screen h-screen flex flex-col items-center justify-center space-">
-    <div class="flex flex-col space-y-16 w-2/3">
-        <div class="flex divide-x divide-gray-500 divide-1 text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-            <h1 class=" text-indigo-600 pr-8">Welcome!</h1>
-            <div class="pl-8">
-                <p class="pb-1">In the admin section 🚀</p>
-            </div>
-        </div>
-    </div>
-</div>
+<?php require(__DIR__ . '/../partials/admin/greeting.php') ?>
+
+<dl class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <?php
+    foreach (array_keys($cards) as $card) {
+        require __DIR__ . '/../partials/admin/card.php';
+    }
+    ?>
+</dl>
+
+<?php
+if ($cards['themes'] == 0) {
+    require __DIR__ . '/../partials/admin/themes/emptyCreateTheme.php';
+}
+?>

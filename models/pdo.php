@@ -10,8 +10,3 @@ function dbConnect()
 
     return new PDO("mysql:host=$host;port=$port;dbname=$name", $user, $password);
 }
-
-function closeConnect()
-{
-    
-}

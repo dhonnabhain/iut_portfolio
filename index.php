@@ -1,21 +1,29 @@
 <?php
 
 /**
- * Importation des dépendences Composer <https://getcomposer.org>
- * N'est pas nécessaire à votre projet
+ * Démarrage ou récupération d'une session
  */
-require __DIR__ . '/vendor/autoload.php';
+session_start();
 
 /**
+ * Importation des dépendences Composer <https://getcomposer.org> -> n'est pas nécessaire à votre projet
  * Importation du tableau de routes (url) du site
+ * Import PDO init
  */
+require __DIR__ . '/vendor/autoload.php';
 require_once(__DIR__ . '/routes.php');
+require_once(__DIR__ . '/models/pdo.php');
 
 /**
  * Mise en place des dépendences
  * Whoops -> écran de debug permettant d'avoir plus d'informations
  */
 bootHelpers();
+
+/**
+ * Init PDO object
+ */
+dbConnect();
 
 /**
  * Initialisation du router
@@ -75,6 +83,7 @@ function renderErrorPage()
     // Appel de la fonction render
     $method();
 }
+
 function getRoutesByRequestMethod()
 {
     switch ($_SERVER['REQUEST_METHOD']) {

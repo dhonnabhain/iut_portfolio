@@ -8,6 +8,8 @@ function login()
         $user = getUserByEmail();
 
         if (!empty($user) && isset($user['password']) && password_verify($_POST['password'], $user['password'])) {
+            $_SESSION['user'] = $user;
+
             header('Location: /admin');
         } else {
             header('Location: /connexion');
@@ -15,4 +17,10 @@ function login()
     } else {
         header('Location: /connexion');
     }
+}
+
+function logout()
+{
+    session_destroy();
+    header('Location: /login');
 }

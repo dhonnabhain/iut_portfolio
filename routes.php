@@ -16,17 +16,34 @@ define('GET_ROUTES', [
         'layout' => 'public',
         'controller' => 'LoginPageController',
     ],
+    'logout' => [
+        'controller' => 'LoginController',
+        'function' => 'logout'
+    ],
     'admin' => [
-        'layout' => 'public',
+        'layout' => 'private',
         'controller' => 'AdminController',
         'function' => 'renderHome'
+    ],
+    'admin/themes' => [
+        'layout' => 'private',
+        'controller' => 'AdminController',
+        'function' => 'renderThemesUpdate'
+    ],
+    'admin/themes/create' => [
+        'layout' => 'private',
+        'controller' => 'AdminController',
+        'function' => 'renderThemeCreate'
     ]
 ]);
 
 define('POST_ROUTES', [
     'login' => [
-        'method' => 'POST',
         'controller' => 'LoginController',
         'function' => 'login'
     ],
+    'admin/themes/create' => [
+        'controller' => 'ThemeController',
+        'function' => 'storeTheme'
+    ]
 ]);
