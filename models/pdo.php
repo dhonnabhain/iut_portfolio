@@ -2,11 +2,11 @@
 
 function dbConnect()
 {
-    $name = "portfolio_light";
+    $name = "portfolio_medium";
     $host = "127.0.0.1";
     $user = "root";
-    $password = "";
-    $port = "3331";
+    $password = "root";
+    $port = "6631";
 
     return new PDO("mysql:host=$host;port=$port;dbname=$name", $user, $password);
 }
