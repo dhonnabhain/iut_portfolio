@@ -52,7 +52,7 @@ define('GET_ROUTES', [
     ],
     'admin/domains/edit' => [
         'layout' => 'private',
-        'controller' => 'DomainController',
+        'controller' => 'AdminController',
         'function' => 'renderDomainUpdate'
     ],
     'admin/domains/delete' => [
@@ -68,7 +68,7 @@ define('GET_ROUTES', [
     ],
     'admin/skills/edit' => [
         'layout' => 'private',
-        'controller' => 'SkillController',
+        'controller' => 'AdminController',
         'function' => 'renderSkillUpdate'
     ],
     'admin/skills/delete' => [

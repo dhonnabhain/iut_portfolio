@@ -45,6 +45,23 @@ function renderThemeUpdate($page)
     require($_SERVER['DOCUMENT_ROOT'] . "/views/layouts/$layout.php");
 }
 
+function renderDomainUpdate($page)
+{
+    authCheck();
+
+    $domainId = $_GET['domain'];
+    $file = "$page.php";
+    $layout = GET_ROUTES[$page]['layout'];
+    $domain = array_merge(
+        showDomain($domainId),
+        [
+            'skills' => getSkills($domainId)
+        ]
+    );
+
+    require($_SERVER['DOCUMENT_ROOT'] . "/views/layouts/$layout.php");
+}
+
 function authCheck()
 {
     if (!isset($_SESSION['user'])) {
