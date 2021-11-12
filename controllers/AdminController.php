@@ -26,6 +26,25 @@ function renderThemeCreate($page)
     require($_SERVER['DOCUMENT_ROOT'] . "/views/layouts/$layout.php");
 }
 
+function renderThemeUpdate($page)
+{
+    authCheck();
+
+    $themeId = $_GET['theme'];
+    $file = "$page.php";
+    $layout = GET_ROUTES[$page]['layout'];
+    $theme = array_merge(
+        showTheme($themeId),
+        [
+            'domains' => array_map(function ($domain) {
+                return array_merge($domain, ['skills' => getSkills($domain['id'])]);
+            }, getDomains($themeId))
+        ]
+    );
+
+    require($_SERVER['DOCUMENT_ROOT'] . "/views/layouts/$layout.php");
+}
+
 function authCheck()
 {
     if (!isset($_SESSION['user'])) {

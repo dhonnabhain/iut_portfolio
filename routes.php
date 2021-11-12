@@ -12,6 +12,8 @@ define('GET_ROUTES', [
         'layout' => 'public',
         'controller' => 'IndexPageController',
     ],
+
+    // Auth
     'login' => [
         'layout' => 'public',
         'controller' => 'LoginPageController',
@@ -25,24 +27,53 @@ define('GET_ROUTES', [
         'controller' => 'AdminController',
         'function' => 'renderHome'
     ],
-    'admin/themes' => [
-        'layout' => 'private',
-        'controller' => 'AdminController',
-        'function' => 'renderThemesUpdate'
-    ],
+
+    // Domain
     'admin/themes/create' => [
         'layout' => 'private',
         'controller' => 'AdminController',
         'function' => 'renderThemeCreate'
     ],
+    'admin/themes/edit' => [
+        'layout' => 'private',
+        'controller' => 'AdminController',
+        'function' => 'renderThemeUpdate'
+    ],
     'admin/themes/delete' => [
         'controller' => 'ThemeController',
         'function' => 'deleteTheme'
     ],
+
+    // Domains
     'admin/domains/create' => [
         'layout' => 'private',
         'controller' => 'DomainController',
         'function' => 'renderFormDomains'
+    ],
+    'admin/domains/edit' => [
+        'layout' => 'private',
+        'controller' => 'DomainController',
+        'function' => 'renderDomainUpdate'
+    ],
+    'admin/domains/delete' => [
+        'controller' => 'DomainController',
+        'function' => 'deleteDomain'
+    ],
+
+    // Skill
+    'admin/skills/create' => [
+        'layout' => 'private',
+        'controller' => 'SkillController',
+        'function' => 'renderFormSkills'
+    ],
+    'admin/skills/edit' => [
+        'layout' => 'private',
+        'controller' => 'SkillController',
+        'function' => 'renderSkillUpdate'
+    ],
+    'admin/skills/delete' => [
+        'controller' => 'SkillController',
+        'function' => 'deleteSkill'
     ],
 ]);
 
@@ -58,5 +89,9 @@ define('POST_ROUTES', [
     'admin/domains/create' => [
         'controller' => 'DomainController',
         'function' => 'storeDomain'
+    ],
+    'admin/skills/create' => [
+        'controller' => 'SkillController',
+        'function' => 'storeSkill'
     ]
 ]);

@@ -19,13 +19,30 @@ function storeDomain()
     if (isset($_POST['name']) && isset($_POST['name']) !== '') {
         try {
             createDomain();
-            header('Location: /admin');
+            header('Location: /admin/themes/edit?theme=' . $_GET['theme']);
         } catch (\Exception $e) {
             $_SESSION['flash'] = $e->getMessage();
-            header('Location: /admin/domains/create?theme=' . $_GET['theme']);
+            header('Location: /admin/themes/edit?theme=' . $_GET['theme']);
         }
     } else {
-        header('Location: /admin/domains/create?theme=' . $_GET['theme']);
+        header('Location: /admin/themes/edit?theme=' . $_GET['theme']);
+    }
+}
+
+function deleteDomain()
+{
+    if (isset($_GET['domain'])) {
+        $domain = showDomain($_GET['domain']);
+
+        try {
+            destroyDomain($_GET['domain']);
+            header("Location: /admin/themes/edit?theme={$domain['theme_id']}");
+        } catch (\Exception $e) {
+            $_SESSION['flash'] = $e->getMessage();
+            header("Location: /admin/themes/edit?theme={$domain['theme_id']}");
+        }
+    } else {
+        header("Location: /admin");
     }
 }
 

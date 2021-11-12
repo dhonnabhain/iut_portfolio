@@ -25,9 +25,9 @@ function deleteTheme()
             header('Location: /admin');
         } catch (\Exception $e) {
             $_SESSION['flash'] = $e->getMessage();
-            header('Location: /admin/themes/create');
+            header('Location: /admin');
         }
     } else {
-        header('Location: /admin/themes/create');
+        header('Location: /admin');
     }
 }

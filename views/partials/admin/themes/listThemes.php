@@ -1,4 +1,9 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="flex justify-end">
+    <a href="/admin/themes/create" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer">
+        <i class="fas fa-plus mr-3"></i> Theme
+    </a>
+</div>
+
 <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
