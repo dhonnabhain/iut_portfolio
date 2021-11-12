@@ -4,7 +4,7 @@ require __DIR__ . '/../models/theme.php';
 
 function storeTheme()
 {
-    if (isset($_POST['name'])) {
+    if (isset($_POST['name']) && isset($_POST['name']) !== '') {
         try {
             createTheme();
             header('Location: /admin');

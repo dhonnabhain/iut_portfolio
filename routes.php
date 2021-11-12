@@ -39,6 +39,11 @@ define('GET_ROUTES', [
         'controller' => 'ThemeController',
         'function' => 'deleteTheme'
     ],
+    'admin/domains/create' => [
+        'layout' => 'private',
+        'controller' => 'DomainController',
+        'function' => 'renderFormDomains'
+    ],
 ]);
 
 define('POST_ROUTES', [
@@ -49,5 +54,9 @@ define('POST_ROUTES', [
     'admin/themes/create' => [
         'controller' => 'ThemeController',
         'function' => 'storeTheme'
+    ],
+    'admin/domains/create' => [
+        'controller' => 'DomainController',
+        'function' => 'storeDomain'
     ]
 ]);

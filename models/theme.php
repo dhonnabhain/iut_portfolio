@@ -2,6 +2,16 @@
 
 require __DIR__ . '/../utils/count.php';
 
+function showTheme($id)
+{
+    $sql = "SELECT * from themes where id = :id";
+
+    $request = dbConnect()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+    $request->execute([':id' => $id]);
+
+    return $request->fetch(PDO::FETCH_ASSOC);
+}
+
 function getAllThemes()
 {
     $sql = "SELECT * FROM themes";
