@@ -62,6 +62,18 @@ function renderDomainUpdate($page)
     require($_SERVER['DOCUMENT_ROOT'] . "/views/layouts/$layout.php");
 }
 
+function renderSkillUpdate($page)
+{
+    authCheck();
+
+    $file = "$page.php";
+    $layout = GET_ROUTES[$page]['layout'];
+    $domain = showDomain($_GET['domain']);
+    $skill = showSkill($_GET['skill']);
+
+    require($_SERVER['DOCUMENT_ROOT'] . "/views/layouts/$layout.php");
+}
+
 function authCheck()
 {
     if (!isset($_SESSION['user'])) {

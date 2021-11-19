@@ -28,7 +28,7 @@ define('GET_ROUTES', [
         'function' => 'renderHome'
     ],
 
-    // Domain
+    // Themes
     'admin/themes/create' => [
         'layout' => 'private',
         'controller' => 'AdminController',
@@ -82,16 +82,34 @@ define('POST_ROUTES', [
         'controller' => 'LoginController',
         'function' => 'login'
     ],
+
+    // Themes
     'admin/themes/create' => [
         'controller' => 'ThemeController',
         'function' => 'storeTheme'
     ],
+    'admin/themes/update' => [
+        'controller' => 'ThemeController',
+        'function' => 'updateTheme'
+    ],
+
+    // Domains
     'admin/domains/create' => [
         'controller' => 'DomainController',
         'function' => 'storeDomain'
     ],
+    'admin/domains/update' => [
+        'controller' => 'DomainController',
+        'function' => 'updateDomain'
+    ],
+
+    // Skills
     'admin/skills/create' => [
         'controller' => 'SkillController',
         'function' => 'storeSkill'
-    ]
+    ],
+    'admin/skills/update' => [
+        'controller' => 'SkillController',
+        'function' => 'updateSkill'
+    ],
 ]);

@@ -2,6 +2,7 @@
 
 require __DIR__ . '/../models/domain.php';
 require __DIR__ . '/../models/skill.php';
+require __DIR__ . '/../utils/updateOrCreate.php';
 
 function renderFormSkills($page)
 {
@@ -16,17 +17,18 @@ function renderFormSkills($page)
 
 function storeSkill()
 {
-    if (isset($_POST['name']) && isset($_POST['name']) !== '' && isset($_POST['level']) && isset($_POST['level']) !== '') {
-        try {
-            createSkill();
-            header('Location: /admin/domains/edit?domain=' . $_GET['domain']);
-        } catch (\Exception $e) {
-            $_SESSION['flash'] = $e->getMessage();
-            header('Location: /admin/skills/create?domain=' . $_GET['domain']);
-        }
-    } else {
-        header('Location: /admin/domains/create?domain=' . $_GET['domain']);
-    }
+    $redirect = "domains/edit?domain={$_GET['domain']}";
+
+    return checkAndUpdateOrCreate('createSkill', "admin/$redirect", $redirect);
+}
+
+function updateSkill()
+{
+    $domainId = $_GET['domain'];
+    $skillId = $_GET['skill'];
+    $redirect = "skills/edit?domain=$domainId&skill=$skillId";
+
+    return checkAndUpdateOrCreate('editSkill', "admin/$redirect", $redirect, $skillId, ['name', 'level']);
 }
 
 function deleteSkill()

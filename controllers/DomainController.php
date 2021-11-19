@@ -2,6 +2,7 @@
 
 require __DIR__ . '/../models/theme.php';
 require __DIR__ . '/../models/domain.php';
+require __DIR__ . '/../utils/updateOrCreate.php';
 
 function renderFormDomains($page)
 {
@@ -16,17 +17,17 @@ function renderFormDomains($page)
 
 function storeDomain()
 {
-    if (isset($_POST['name']) && isset($_POST['name']) !== '') {
-        try {
-            createDomain();
-            header('Location: /admin/themes/edit?theme=' . $_GET['theme']);
-        } catch (\Exception $e) {
-            $_SESSION['flash'] = $e->getMessage();
-            header('Location: /admin/themes/edit?theme=' . $_GET['theme']);
-        }
-    } else {
-        header('Location: /admin/themes/edit?theme=' . $_GET['theme']);
-    }
+    $redirect = "themes/edit?theme={$_GET['theme']}";
+
+    return checkAndUpdateOrCreate('createDomain', "admin/$redirect", $redirect);
+}
+
+function updateDomain()
+{
+    $domainId = $_GET['domain'];
+    $redirect = "domains/edit?domain=$domainId";
+
+    return checkAndUpdateOrCreate('editDomain', "admin/$redirect", $redirect, $domainId);
 }
 
 function deleteDomain()

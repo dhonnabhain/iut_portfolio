@@ -41,6 +41,14 @@ function showDomain($id)
     return $request->fetch(PDO::FETCH_ASSOC);
 }
 
+function editDomain($id)
+{
+    $sql = "UPDATE domains set name = :name where id = :id";
+
+    $request = dbConnect()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+    $test = $request->execute([':name' => $_POST['name'], ':id' => $id]);
+}
+
 function destroyDomain($id)
 {
     $sql = "DELETE FROM domains WHERE id = :id";

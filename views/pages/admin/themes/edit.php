@@ -2,12 +2,13 @@
 // if (isset($_SESSION['flash'])) {
 //     require __DIR__ . '/../../../partials/admin/themes/cannotUpdate.php';
 // }
-// ?>
+// 
+?>
 
 
 <div class="bg-white overflow-hidden shadow rounded-lg xl:w-1/3 mx-auto">
     <div class="px-4 py-5 sm:p-6">
-        <form action="/admin/themes/update" method="POST" class="space-y-8 divide-y divide-gray-200">
+        <form action="/admin/themes/update?theme=<?= $theme['id'] ?>" method="POST" class="space-y-8 divide-y divide-gray-200">
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div>
                     <div>
@@ -54,9 +55,9 @@
 
             <div class="pt-5">
                 <div class="flex justify-end">
-                    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <a href="/admin" type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Cancel
-                    </button>
+                    </a>
                     <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Save
                     </button>

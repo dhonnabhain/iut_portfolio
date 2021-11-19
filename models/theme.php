@@ -60,6 +60,14 @@ function getThemesForTable()
     return $request->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function editTheme($id)
+{
+    $sql = "UPDATE themes set name = :name where id = :id";
+
+    $request = dbConnect()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+    $test = $request->execute([':name' => $_POST['name'], ':id' => $id]);
+}
+
 function destroyTheme($id)
 {
     $sql = "DELETE FROM themes WHERE id = :id";
