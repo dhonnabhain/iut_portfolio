@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/skill.php';
+
 function countAllDomains()
 {
     return countAllFromTable('domains');
@@ -17,7 +19,7 @@ function createDomain()
     ]);
 }
 
-function getDomains($theme = null)
+function getDomains($theme = null, $loadSkills = false)
 {
     $sql = "SELECT * FROM domains WHERE theme_id = :theme_id";
 
@@ -26,7 +28,17 @@ function getDomains($theme = null)
         ':theme_id' => $theme,
     ]);
 
-    return $request->fetchAll(PDO::FETCH_ASSOC);
+    $domains = $request->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($loadSkills) {
+        $domains = array_map(function ($domain) {
+            $domain['skills'] = getSkills($domain['id']);
+
+            return $domain;
+        }, $domains);
+    }
+
+    return $domains;
 }
 
 function showDomain($id)

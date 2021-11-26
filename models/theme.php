@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/../utils/count.php';
+require __DIR__ . '/domain.php';
 
 function showTheme($id)
 {
@@ -12,14 +13,24 @@ function showTheme($id)
     return $request->fetch(PDO::FETCH_ASSOC);
 }
 
-function getAllThemes()
+function getAllThemes($loadDomains = false)
 {
     $sql = "SELECT * FROM themes";
 
     $request = dbConnect()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
     $request->execute();
 
-    return $request->fetchAll(PDO::FETCH_ASSOC);
+    $themes = $request->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($loadDomains) {
+        $themes = array_map(function ($theme) {
+            $theme['domains'] = getDomains($theme['id'], true);
+
+            return $theme;
+        }, $themes);
+    }
+
+    return $themes;
 }
 
 function countAllThemes()
