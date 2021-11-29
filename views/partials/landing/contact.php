@@ -1,4 +1,4 @@
-<div class="bg-indigo-500 p-8">
+<div class="bg-gradient-to-r from-indigo-600 via-cyan-500 to-blue-500 p-8">
     <div class="mb-14 text-center space-y-3">
         <h2 class="text-4xl font-semibold tracking-thight text-white">Want to talk?</h2>
         <p class="text-white text-2xl font-light">I haven't bitten anyone yet</p>

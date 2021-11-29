@@ -1,0 +1,1 @@
+<i class="fas fa-star text-4xl text-indigo-500"></i>
