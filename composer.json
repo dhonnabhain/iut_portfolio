@@ -4,8 +4,7 @@
   "type": "project",
   "require": {
     "symfony/var-dumper": "6.0.x-dev",
-    "filp/whoops": "^2.14",
-    "symfony/mailer": "6.0.x-dev"
+    "filp/whoops": "^2.14"
   },
   "license": "MIT",
   "authors": [

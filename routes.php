@@ -82,6 +82,10 @@ define('POST_ROUTES', [
         'controller' => 'LoginController',
         'function' => 'login'
     ],
+    'contact' => [
+        'controller' => 'ContactController',
+        'function' => 'send'
+    ],
 
     // Themes
     'admin/themes/create' => [
