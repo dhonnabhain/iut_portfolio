@@ -1,12 +1,12 @@
 <div class="px-16 mt-8 flex justify-end">
-    <h2 class="text-6xl font-semibold tracking-thight text-gray-800 ">Things I <span class="text-indigo-500">do</span></h2>
+    <h2 class="text-6xl font-semibold tracking-thight text-gray-800 dark:text-gray-100">Things I <span class="text-indigo-500">do</span></h2>
 </div>
 
 <div class="grid grid-cols-4 gap-8 px-8 mx-auto py-16">
     <?php foreach ($themes as $theme) : ?>
-        <div x-data="{open: false}" :class="{'col-span-4': open}" class="bg-white border border-gray-200 px-6 py-4 rounded shadow-lg hover:shadow-xl hover:border-indigo-500 transition duration-100">
+        <div x-data="{open: false}" :class="{'col-span-4': open}" class="bg-white dark:bg-gray-700 border border-gray-200 px-6 py-4 rounded shadow-lg hover:shadow-xl hover:border-indigo-500 transition duration-100">
             <div class="flex justify-between">
-                <h3 :class="{'text-center': !open" } class="text-3xl text-gray-800 font-semibold">
+                <h3 :class="{'text-center': !open" } class="text-3xl text-gray-800 dark:text-gray-100 font-semibold">
                     <?= $theme['name'] ?>
                 </h3>
                 <button x-show="open" @click="open = false" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -20,7 +20,7 @@
                         <?= $theme['domainsCount'] ?>
                     </div>
 
-                    <div><?= $theme['domainsCount'] > 1 ? 'domains' : 'domain' ?></div>
+                    <div class="dark:text-gray-100"><?= $theme['domainsCount'] > 1 ? 'domains' : 'domain' ?></div>
                 </div>
 
                 <div class="text-xl mt-14 text-center">
@@ -28,13 +28,13 @@
                         <?= $theme['skillsCount'] ?>
                     </div>
 
-                    <div><?= $theme['skillsCount'] > 1 ? 'skills' : 'skill' ?></div>
+                    <div class="dark:text-gray-100"><?= $theme['skillsCount'] > 1 ? 'skills' : 'skill' ?></div>
                 </div>
             </div>
 
-            <div x-show="!open" class="my-6">
+            <div x-show="!open" class="my-6 dark:text-gray-100">
                 <?php foreach ($theme['wordsCloud']  as $word) : ?>
-                    <p class="inline text-lg font-medium"><?= $word ?></p>
+                    <p class="inline text-lg font-medium "><?= $word ?></p>
                 <?php endforeach; ?>
                 ...
             </div>
@@ -47,12 +47,12 @@
                 <div class="grid grid-cols-8 gap-y-6">
                     <?php foreach ($theme['domains']  as $domain) : ?>
                         <div class="col-span-2">
-                            <p class="inline text-lg font-medium"><?= $domain['name'] ?></p>
+                            <p class="inline text-lg font-medium dark:text-gray-100"><?= $domain['name'] ?></p>
                         </div>
                         <div class="grid grid-cols-6 col-span-6 flex flex-col">
                             <?php foreach ($domain['skills']  as $skill) : ?>
                                 <div>
-                                    <p class="font-medium text-gray-800 mb-3"><?= $skill['name'] ?></p>
+                                    <p class="font-medium text-gray-800 dark:text-gray-100 mb-3"><?= $skill['name'] ?></p>
 
                                     <?php
                                     $starsToShow = 1;
